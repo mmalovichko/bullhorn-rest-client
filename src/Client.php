@@ -66,6 +66,9 @@ class Client
         if (array_key_exists(ClientOptions::RefreshTokenStorageKey, $options)) {
             $authClientOptions[AuthClientOptions::RefreshTokenStorageKey] = $options[ClientOptions::RefreshTokenStorageKey];
         }
+        if (array_key_exists(ClientOptions::LocalFileStore, $options)) {
+            $authClientOptions[AuthClientOptions::LocalFileStore] = $options[ClientOptions::LocalFileStore];
+        }
         $this->authClient = array_key_exists(ClientOptions::AuthClient, $options)
             ? $options[ClientOptions::AuthClient]
             : new AuthClient($authClientOptions)

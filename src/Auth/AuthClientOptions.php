@@ -3,6 +3,7 @@
 abstract class AuthClientOptions {
     const CredentialsProvider = 'CredentialsProvider';
     const DataStore = 'DataStore';
+    const LocalFileStore = 'LocalFileStore';
     const HttpClient = 'HttpClient';
     const RestTokenStorageKey = 'RestTokenStorageKey';
     const RestUrlStorageKey = 'RestUrlStorageKey';

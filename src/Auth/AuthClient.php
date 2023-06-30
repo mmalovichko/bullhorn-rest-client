@@ -67,10 +67,16 @@ class AuthClient implements AuthClientInterface {
             $this->refreshTokenStorageKey = $options[AuthClientOptions::RefreshTokenStorageKey];
         }
 
-        $this->dataStore = array_key_exists(AuthClientOptions::DataStore, $options)
-            ? $options[AuthClientOptions::DataStore]
-            : new LocalFileDataStore()
-        ;
+        if(array_key_exists(AuthClientOptions::DataStore, $options)){
+            $this->dataStore = $options[AuthClientOptions::DataStore];
+        }else{
+            if(array_key_exists(AuthClientOptions::LocalFileStore, $options)){
+                $this->dataStore = new LocalFileDataStore($options[AuthClientOptions::LocalFileStore]);
+            }else{
+                $this->dataStore = new LocalFileDataStore();
+            }
+        }
+
         if (!$this->dataStore instanceof DataStoreInterface) {
             throw new InvalidConfigException(AuthClientOptions::DataStore . ' must implement ' . DataStoreInterface::class);
         }

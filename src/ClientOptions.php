@@ -6,6 +6,7 @@ abstract class ClientOptions {
     const AuthDataStore = 'AuthDataStore';
     const RestTokenStorageKey = 'RestTokenStorageKey';
     const RestUrlStorageKey = 'RestUrlStorageKey';
+    const LocalFileStore = 'LocalFileStore';
     const RefreshTokenStorageKey = 'RefreshTokenStorageKey';
     const HttpClientFactory = 'HttpClientFactory';
     const AutoRefreshSessions = 'AutoRefreshSessions';
