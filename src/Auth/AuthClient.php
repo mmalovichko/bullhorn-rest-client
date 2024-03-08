@@ -291,7 +291,14 @@ class AuthClient implements AuthClientInterface {
                 throw new BullhornAuthException('Failed to fetch authorization code');
             }
 
-            $authCode = preg_split("/code=/", $locationHeader);
+            $newresponse = $this->httpClient->get(
+                $locationHeader,
+                ['allow_redirects' => false]
+            );
+
+            $newLocationHeader = $newresponse->getHeader('Location')[0];
+
+            $authCode = preg_split("/code=/", $newLocationHeader);
             if (count($authCode) > 1) {
                 $authCode = preg_split("/&/", $authCode[1]);
                 return urldecode($authCode[0]);
